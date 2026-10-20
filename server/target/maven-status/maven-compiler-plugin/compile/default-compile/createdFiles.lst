@@ -1,0 +1,14 @@
+com\example\flight\repository\FlightRepository.class
+com\example\flight\controller\FlightController.class
+com\example\flight\FlightApplication.class
+com\example\flight\service\AuthFailedException.class
+com\example\flight\service\AuthService$Session.class
+com\example\flight\service\AuthService.class
+com\example\flight\service\AuthService$1.class
+com\example\flight\controller\GlobalExceptionHandler.class
+com\example\flight\controller\AuthController.class
+com\example\flight\service\PasswordHasher.class
+com\example\flight\repository\UserRepository.class
+com\example\flight\model\FlightRow.class
+com\example\flight\service\FlightService.class
+com\example\flight\model\UserAccount.class

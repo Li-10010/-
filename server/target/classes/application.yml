@@ -1,0 +1,44 @@
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+
+spring:
+  application:
+    name: flight-server
+
+  datasource:
+    # characterEncoding 必须是 Java 字符集名（UTF-8），写成 utf8mb4 会报
+    # Unsupported character encoding。库端为 utf8mb4 时用 UTF-8 连接即可完整支持中文/emoji
+    url: jdbc:mysql://127.0.0.1:3306/flight_db?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${MYSQL_USER:root}
+    # 本机开发默认密码；生产环境用环境变量 MYSQL_PASSWORD 覆盖即可
+    password: ${MYSQL_PASSWORD:123456}
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 5000
+
+  # 前后端同源部署：把项目里的 web/ 目录当静态资源目录
+  # 这样 http://localhost:8080/ 直接就是查询页面，无需另起前端服务
+  mvc:
+    static-path-pattern: /**
+  web:
+    resources:
+      static-locations:
+        - classpath:/static/
+        - file:./web/
+        - file:../web/
+
+  jackson:
+    time-zone: Asia/Shanghai
+    date-format: yyyy-MM-dd HH:mm:ss
+    default-property-inclusion: always
+
+logging:
+  level:
+    root: info
+    com.example.flight: debug
